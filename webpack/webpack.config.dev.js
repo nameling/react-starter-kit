@@ -3,6 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 const themeVars = require('../src/theme.less');
 
 process.env.NODE_ENV = 'development';
@@ -83,6 +84,32 @@ module.exports = {
                     },
                   },
                 ],
+            },
+            {
+              test: /\.(css|less)$/,
+              include: /node_modules/,
+              use: [
+                {
+                  loader: 'style-loader',
+                },
+                {
+                  loader: 'css-loader',
+                  options: {},
+                },
+                {
+                  loader: 'postcss-loader',
+                  options: {
+                    plugins: () => [autoprefixer()],
+                  },
+                },
+                {
+                  loader: 'less-loader',
+                  options: {
+                    javascriptEnabled: true,
+                    modifyVars: themeVars,
+                  },
+                },
+              ],
             },
         ]
     },
