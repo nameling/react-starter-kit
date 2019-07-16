@@ -1,10 +1,13 @@
 import React from "react";
 import { Button } from 'antd';
-import 'antd/es/button/style/css';
+import { inject, observer } from 'mobx-react';
 
+@inject('XinyunStore')
+@observer
 class Dashboard extends React.Component{
     componentDidMount() {
-        console.log(13217878878)
+        // const { getKeyOrMenu } = this.props.XinyunStore;
+        // getKeyOrMenu();
     }
     render() {
         return <div>

@@ -1,10 +1,12 @@
 
 const path = require('path');
+const fs = require('fs');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const themeVars = require('../src/theme.less');
+const dev = require('../config/env');
 
 process.env.NODE_ENV = 'development';
 
@@ -27,7 +29,7 @@ module.exports = {
         inline: true,
         stats: 'errors-only',
         disableHostCheck: true,
-        // ...dev.devServer,
+        ...dev.devServer,
     },
     mode: 'development',
     output: {
@@ -123,11 +125,11 @@ module.exports = {
           pages: path.resolve(__dirname, '../src/pages'),
           components: path.resolve(__dirname, '../src/components'),
         },
-        // modules: [
-        //   path.resolve(__dirname, '../src'),
-        //   path.resolve(__dirname, '../node_modules'),
-        //   path.resolve(__dirname, '../node_modules/antd/node_modules'),
-        //   path.resolve(__dirname, '../../xinyun-react-uikit'),
-        // ],
+        modules: [
+          path.resolve(__dirname, '../src'),
+          path.resolve(__dirname, '../node_modules'),
+          path.resolve(__dirname, '../node_modules/antd/node_modules'),
+          path.resolve(__dirname, '../../xinyun-react-uikit'),
+        ],
     },
 }
