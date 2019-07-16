@@ -136,11 +136,11 @@ module.exports = {
             pages: path.resolve(__dirname, "../src/pages"),
             components: path.resolve(__dirname, "../src/components"),
         },
-    // modules: [
-    //   path.resolve(__dirname, '../src'),
-    //   path.resolve(__dirname, '../node_modules'),
-    //   path.resolve(__dirname, '../node_modules/antd/node_modules'),
-    //   path.resolve(__dirname, '../../xinyun-react-uikit'),
-    // ],
+        modules: [
+          path.resolve(__dirname, '../src'),
+          path.resolve(__dirname, '../node_modules'),
+          path.resolve(__dirname, '../node_modules/antd/node_modules'),
+          path.resolve(__dirname, '../../xinyun-react-uikit'),
+        ],
     },
 };
