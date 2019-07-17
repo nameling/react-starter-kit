@@ -6,7 +6,7 @@ import {
   enhanceUrl,
   checkStatus,
   formatResponse,
-} from "./requstUtils";
+} from "./requestUtils";
 
 class InterceptorManager {
   constructor(handlers) {
