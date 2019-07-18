@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{36:function(n,e,s){"use strict";s.r(e);var t=s(0),i=s.n(t);e.default=function(){return i.a.createElement("div",null,"this is Page of users!")}}}]);
-//# sourceMappingURL=4.41bd1c53.js.map

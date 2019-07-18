@@ -5,10 +5,10 @@ import paths, { PUBLIC_PATH } from './paths.js';
 import proxyConfigAll from './proxy.config.js';
 import getValueByEnv from './getValueByEnv.js';
 
+const proxyCurrent = getValueByEnv(proxyConfigAll, { defaultEnv: 'dev' });
+
 const HOST = process.env.HOST || '0.0.0.0'; // 本机IP
 const PORT = process.env.PORT || 8080; // 端口号
-
-const proxyCurrent = getValueByEnv(proxyConfigAll, { defaultEnv: 'dev' });
 
 const webpackConfigDev = {
   ...webpackConfigBase,
@@ -60,8 +60,7 @@ const webpackConfigDev = {
     }),
 
     // 模块热替换
-    new webpack.HotModuleReplacementPlugin(),
+    // new webpack.HotModuleReplacementPlugin(),
   ]),
-};
-
+}
 export default webpackConfigDev;

@@ -8,9 +8,11 @@ import getStyleLoaders from './getStyleLoaders.js';
 import switchConfig from './swtich.config.js';
 
 const theme = getTheme(paths.appTheme);
+const { OPEN_SOURCE_MAP } = switchConfig;
 
 const isProd = process.env.NODE_ENV === 'production';
 const isVerbose = process.argv.includes('--verbose');
+import mdHighlightPlugin from '@mapbox/rehype-prism';
 
 const REGEXP_SCRIPT = /\.(ts|tsx|js|jsx|mjs)$/;
 const REGEXP_IMAGE = /\.(bmp|gif|jpg|jpeg|png|svg)$/;
@@ -20,6 +22,8 @@ const REGEXP_CSS = /\.css$/;
 const REGEXP_LESS = /\.less$/;
 
 export default {
+  context: paths.appRoot,
+
   mode: isProd ? 'production' : 'development',
   // 入口与
   entry: [paths.appEntry],
@@ -30,7 +34,9 @@ export default {
     path: paths.appDist,
     publicPath: PUBLIC_PATH,
     pathinfo: isVerbose,
-    filename: isProd ? 'js/[name].[hash:8].js' : 'js/[name].js'
+    filename: isProd ? 'js/[name].[hash:8].js' : 'js/[name].js',
+    devtoolModuleFilenameTemplate: info =>
+      path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
   },
 
   devtool: isProd ? 'source-map' : 'cheap-module-eval-source-map',
@@ -45,17 +51,17 @@ export default {
 
   module: {
     rules: [
-      {
-        enforce: 'pre',
-        include: paths.appSrc,
-        exclude: paths.appNodeModules,
-        use: {
-          loader: 'eslint-loader',
-          options: {
-            cache: true, // 缓存lint结果，可以减少lint时间
-          },
-        }
-      },
+      // {
+      //   enforce: 'pre',
+      //   include: paths.appSrc,
+      //   exclude: paths.appNodeModules,
+      //   use: {
+      //     loader: 'eslint-loader',
+      //     options: {
+      //       cache: true, // 缓存lint结果，可以减少lint时间
+      //     },
+      //   }
+      // },
       {
         // 只匹配第一个
         oneOf: [
@@ -73,17 +79,12 @@ export default {
               },
             ],
           },
-          {
-            test: REGEXP_SCRIPT,
-            include: paths.appSrc,
-            exclude: paths.appNodeModules,
-            use: {
-              loader: 'babel-loader',
-              options: {
-                cacheDirectory: !isProd, // 缓存
-              },
-            }
-          },
+          // {
+          //   test: REGEXP_SCRIPT,
+          //   include: paths.appSrc,
+          //   exclude: paths.appNodeModules,
+          //   use: ['happypack/loader?id=babel'],
+          // },
           {
             test: REGEXP_MODULE_CSS,
             include: paths.appSrc,
@@ -149,5 +150,6 @@ export default {
         ],
       },
     ]
-  }
+  },
+  plugins: []
 }
