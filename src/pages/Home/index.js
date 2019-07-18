@@ -20,7 +20,7 @@ class Home extends Component {
     const { value } = this.state;
     return (
       <div className={style['page-home']}>
-        <h1>Home</h1>
+        <h1>hello world</h1>
         <DatePicker value={value} onChange={this.handleChange} />
       </div>
     );

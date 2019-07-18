@@ -11,12 +11,12 @@ import 'prismjs/themes/prism.css';
 
 import App from '@/App.tsx';
 // @ts-ignore
-import Store from './store/index.ts';
+// import Store from './store/index.ts';
 
-const store = new Store();
+// const store = new Store();
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider>
     <LocaleProvider locale={zhCN}>
       <App />
     </LocaleProvider>
