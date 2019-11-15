@@ -1,2 +1,6 @@
-// other file
+# Dependency directories
 node_modules
+
+#IED
+.idea
+.vscode
