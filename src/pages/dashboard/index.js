@@ -5,7 +5,9 @@ import s from './index.less';
 
 class Dashboard extends React.Component{
     componentDidMount() {
-        console.log(13217878878)
+    console.log(13217878878)
+
+
     }
     render() {
         return <div className={s.d}>
