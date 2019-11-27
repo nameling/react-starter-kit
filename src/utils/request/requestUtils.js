@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { isObject, isString } from "lodash";
 import qs from "qs";
 
@@ -75,4 +76,3 @@ export const formatResponse = res => {
   }
   return responseType ? res[responseType]() : res;
 };
-© 2019 Git

@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+      "target": "esnext",
+      "experimentalDecorators": true,
+      "baseUrl": ".",
+      "paths": {
+          "@/*": ["./src/*"],
+          "src/*": ["./src/*"],
+          "assets/*": ["./src/assets/*"],
+          "utils/*": ["./src/utils/*"],
+          "pages/*": ["./src/pages/*"],
+          "components/*": ["./src/components/*"]
+      },
+      "jsx": "react"
+  },
+  "exclude": ["dist"],
+  "include": ["src/**/*"]
+}

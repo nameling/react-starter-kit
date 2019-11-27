@@ -6,7 +6,7 @@ import {
   enhanceUrl,
   checkStatus,
   formatResponse,
-} from "./requstUtils";
+} from './requestUtils';
 
 class InterceptorManager {
   constructor(handlers) {
@@ -46,6 +46,7 @@ class Request {
   };
 
   send = config => {
+    // eslint-disable-next-line no-param-reassign
     config.method = config.method ? config.method.toLowerCase() : "get";
     let promise = Promise.resolve(config);
     promise = this.interceptors.request.reduceHandlers(promise);

@@ -1,0 +1,8 @@
+{
+  "extends": "./jsconfig.json",
+  "include": ["**/*.js", "**/*.jsx"],
+  "compilerOptions": {
+    // "allowJs": true,
+    "checkJs": true
+  }
+}
