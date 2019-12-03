@@ -1,10 +1,12 @@
-import Terser from 'terser';
-
+const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 const path = require("path");
 const webpack = require("webpack");
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-// const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+const Terser = require("terser");
 const TerserPlugin = require("terser-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
@@ -59,8 +61,6 @@ const webpackConfig = {
     },
     plugins: [
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-        // new CleanWebpackPlugin(),
-
         // html-webpack-plugin@3有 bug,没有把所有chunks文件加入，html-webpack-plugin@4修复
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "../public/index.html"),
@@ -103,6 +103,13 @@ const webpackConfig = {
             filename: "public/styles/[name].[contenthash:8].css",
             chunkFilename: "public/styles/[name].[contenthash:8].chunk.css",
         }),
+        new FriendlyErrorsWebpackPlugin(),
+        // A webpack plugin to remove/clean your build folder(s).
+        // 清理旧文件，plugin放置顺序最后
+        new CleanWebpackPlugin({
+          verbose: true,
+          cleanOnceBeforeBuildPatterns: ['**/*'],
+        }),
         new CopyWebpackPlugin([
             {
                 from: path.resolve(__dirname, "../public/"),
@@ -119,6 +126,8 @@ const webpackConfig = {
                 ignore: "index.html",
             },
         ]),
+        // 构建进度条
+        new ProgressBarPlugin(),
 
         new webpack.DefinePlugin({
             __DEV__: JSON.stringify(false),
@@ -186,7 +195,7 @@ const webpackConfig = {
                         },
                     },
                 ],
-            },
+              },
             {
                 test: /\.(css|less)$/,
                 include: /node_modules/,

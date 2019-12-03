@@ -1,8 +1,9 @@
 const path = require("path");
-// const webpack = require("webpack");
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const autoprefixer = require("autoprefixer");
+const postcssFlexbugsFixesPlugin = require('postcss-flexbugs-fixes');
 const themeVars = require("../src/theme.less");
 
 process.env.NODE_ENV = "development";
@@ -12,7 +13,7 @@ module.exports = {
     devtool: "cheap-module-eval-source-map",
     devServer: {
         contentBase: path.resolve(__dirname, "../public"),
-        hot: false,
+        hot: true,
         host: "127.0.0.1",
         port: process.env.PORT || 8000,
         open: true,
@@ -45,6 +46,8 @@ module.exports = {
                 ignore: "index.html",
             },
         ]),
+        // 模块热替换
+        new webpack.HotModuleReplacementPlugin(),
     ],
     module: {
         rules: [
@@ -109,7 +112,7 @@ module.exports = {
                     {
                         loader: "postcss-loader",
                         options: {
-                            plugins: () => [autoprefixer()],
+                            plugins: () => [autoprefixer(), postcssFlexbugsFixesPlugin()],
                         },
                     },
                     {
