@@ -10,6 +10,7 @@ const Terser = require("terser");
 const TerserPlugin = require("terser-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const themeVars = require("../src/theme.less");
 
 process.env.NODE_ENV = "production";
@@ -97,6 +98,17 @@ const webpackConfig = {
                 minifyURLs: true,
             },
             // chunks: ['supplier'],
+        }),
+        new PreloadWebpackPlugin({
+          rel: 'preload',
+          include: 'initial',
+          fileBlacklist: [/\.map$/, /\.css$/], // css会先加载
+          as(entry) {
+            if (/\.css$/.test(entry)) return 'style';
+            if (/\.(woff|woff2|eot)$/.test(entry)) return 'font';
+            if (/\.(png|jpg|jpeg|gif|svg)$/.test(entry)) return 'image';
+            return 'script';
+          },
         }),
         // 打包后提取出css文件
         new MiniCssExtractPlugin({
