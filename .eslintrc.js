@@ -49,6 +49,8 @@ module.exports = {
       ERROR,
       { extensions: ['.js', '.jsx', '.tsx'] },
     ],
-    'max-classes-per-file': OFF
+    'max-classes-per-file': OFF,
+    "react/jsx-props-no-spreading": OFF,
+    "no-restricted-globals": OFF
   },
 };
