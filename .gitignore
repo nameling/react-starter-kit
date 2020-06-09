@@ -2,7 +2,7 @@
 node_modules
 
 # production
-/dist
+dist
 
 # IDE
 .idea
