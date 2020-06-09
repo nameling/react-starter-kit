@@ -1,31 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { Suspense } from 'react';
+import ReactDom from 'react-dom';
+import { LocaleProvider } from "antd";
 import { Provider } from 'mobx-react';
+import zhCN from "antd/lib/locale-provider/zh_CN";
+import App from './app';
+import store from './store';
 
-// 本地化
-import { LocaleProvider } from 'antd';
-import zhCN from 'antd/es/locale-provider/zh_CN.js';
-
-// 语法高亮
-import 'prismjs/themes/prism.css';
-
-import App from '@/App.tsx';
-// @ts-ignore
-// import Store from './store/index.ts';
-
-// const store = new Store();
-
-ReactDOM.render(
-  <Provider>
+ReactDom.render(
     <LocaleProvider locale={zhCN}>
-      <App />
-    </LocaleProvider>
-  </Provider>,
-  document.getElementById('root')
-);
+        <Suspense fallback={<div>loading</div>}>
+            <Provider {...store}>
+                <App history={history} />
+            </Provider>
+        </Suspense>
+    </LocaleProvider>,
+    document.getElementById("root")
+)
 
-// if (process.env.NODE_ENV === 'development') {
-//   if (module.hot) {
-//     module.hot.accept();
-//   }
-// }
+if (process.env.NODE_ENV === 'development') {
+  if (module.hot) {
+    module.hot.accept();
+  }
+}
