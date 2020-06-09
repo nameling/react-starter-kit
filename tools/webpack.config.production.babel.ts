@@ -133,7 +133,7 @@ const webpackConfigProd = {
     USE_DLL &&
       new webpack.DllReferencePlugin({
         manifest: manifestJson,
-      }),
+      } as webpack.DllReferencePlugin.Options),
 
     USE_DLL &&
       new HtmlWebpackTagsPlugin({
@@ -145,7 +145,6 @@ const webpackConfigProd = {
     new webpack.SourceMapDevToolPlugin({
       filename: 'sourcemaps/[file].map',
       publicPath: SOURCE_MAP_PUBLICH_PATH,
-      fileContext: 'js',
     }),
 
     // 清理旧文件, plugins 顺序应该放在最后
