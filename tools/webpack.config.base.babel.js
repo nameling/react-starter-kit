@@ -29,6 +29,7 @@ const REGEXP_MODULE_LESS = /\.module\.less$/;
 const REGEXP_CSS = /\.css$/;
 const REGEXP_LESS = /\.less$/;
 
+console.log(paths.appEntry, '111')
 export default {
   context: paths.appRoot,
 

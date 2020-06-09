@@ -61,7 +61,7 @@
   "scripts": {
     "start": "npm run dev",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --config tools/webpack.config.development.babel.js --color --progress",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --color --progress",
     "build": "webpack --config=webpack/webpack.config.prod.js"
   },
   "repository": {
