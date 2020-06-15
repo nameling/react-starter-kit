@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Button, Modal } from 'antd';
+import React, { useState } from "react";
+import { Button, Modal } from "antd";
 
 const HooksDemo: React.FC = (): React.ReactElement => {
   const [open, setOpen] = useState(false);

@@ -1,4 +1,6 @@
-import fetch from "whatwg-fetch";
+/* eslint-disable max-classes-per-file */
+/* eslint-disable no-param-reassign */
+import { fetch } from "whatwg-fetch";
 import {
   createRequest,
   enhanceHeader,
@@ -6,7 +8,7 @@ import {
   enhanceUrl,
   checkStatus,
   formatResponse,
-} from "./requestUtils";
+} from "@/utils/request/requestUtils";
 
 class InterceptorManager {
   constructor(handlers) {
@@ -20,7 +22,7 @@ class InterceptorManager {
     });
   };
 
-  reduceHandlers = promise => {
+  reduceHandlers = (promise) => {
     this.handlers.reduce((prev, cur) => {
       return prev.then(cur.fullfilled, cur.rejected);
     }, promise);
@@ -39,17 +41,17 @@ class Request {
 
   init = () => {
     ["get", "post", "put", "delete", "methods", "patch", "head"].forEach(
-      method => {
-        this[method] = config => this.send(config);
+      (method) => {
+        this[method] = (config) => this.send(config);
       }
     );
   };
 
-  send = config => {
+  send = (config) => {
     config.method = config.method ? config.method.toLowerCase() : "get";
     let promise = Promise.resolve(config);
     promise = this.interceptors.request.reduceHandlers(promise);
-    promise = promise.then(configParams => fetch(configParams));
+    promise = promise.then((configParams) => fetch(configParams));
     promise = this.interceptors.response.reduceHandlers(promise);
     return promise;
   };

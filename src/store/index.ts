@@ -1,5 +1,5 @@
-import XinyunStore from './xinyun';
+import XinyunStore from "./xinyun";
 
 export default {
-    XinyunStore
+  XinyunStore,
 };

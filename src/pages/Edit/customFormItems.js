@@ -1,5 +1,5 @@
-import React from 'react';
-import { Input, DatePicker, Radio, Select, Checkbox, Switch } from 'antd';
+import React from "react";
+import { Input, DatePicker, Radio, Select, Checkbox, Switch } from "antd";
 
 const { TextArea } = Input;
 const RadioGroup = Radio.Group;
@@ -18,9 +18,9 @@ const selectExample = (
 const radioGroupExample = (
   <RadioGroup
     options={[
-      { label: 'radio1', value: 'radio1' },
-      { label: 'radio2', value: 'radio2' },
-      { label: 'radio3', value: 'radio3' },
+      { label: "radio1", value: "radio1" },
+      { label: "radio2", value: "radio2" },
+      { label: "radio3", value: "radio3" },
     ]}
   />
 );
@@ -34,79 +34,79 @@ const radioButtonGroupExample = (
 const checkboxGroupExample = (
   <CheckboxGroup
     options={[
-      { label: 'checkbox1', value: 'checkbox1' },
-      { label: 'checkbox2', value: 'checkbox2' },
-      { label: 'checkbox3', value: 'checkbox3' },
+      { label: "checkbox1", value: "checkbox1" },
+      { label: "checkbox2", value: "checkbox2" },
+      { label: "checkbox3", value: "checkbox3" },
     ]}
   />
 );
 
 export default [
   {
-    label: 'Input',
-    key: 'Input',
+    label: "Input",
+    key: "Input",
     required: true,
   },
   {
-    label: '密码输入框',
-    key: 'password',
+    label: "密码输入框",
+    key: "password",
     component: <Input type="password" />,
     rules: [
       {
         required: true,
         pattern: /^[0-9a-zA-Z]{8,16}$/,
-        message: '密码长度为8-16位，只能包含数字和英文',
+        message: "密码长度为8-16位，只能包含数字和英文",
       },
     ],
   },
   {
-    label: 'TextArea',
-    key: 'TextArea',
+    label: "TextArea",
+    key: "TextArea",
     component: <TextArea />,
   },
   {
-    label: 'Select',
-    key: 'Select',
+    label: "Select",
+    key: "Select",
     required: true,
     component: selectExample,
   },
   {
-    label: 'RadioGroup',
-    key: 'RadioGroup',
+    label: "RadioGroup",
+    key: "RadioGroup",
     required: true,
     component: radioGroupExample,
-    options: { initialValue: 'radio1' },
+    options: { initialValue: "radio1" },
   },
   {
-    label: 'RadioButtonGroup',
-    key: 'RadioButtonGroup',
+    label: "RadioButtonGroup",
+    key: "RadioButtonGroup",
     required: true,
     component: radioButtonGroupExample,
-    options: { initialValue: 'radio2' },
+    options: { initialValue: "radio2" },
   },
   {
-    label: 'CheckboxGroup',
-    key: 'CheckboxGroup',
+    label: "CheckboxGroup",
+    key: "CheckboxGroup",
     required: true,
     component: checkboxGroupExample,
-    options: { initialValue: ['checkbox3'] },
+    options: { initialValue: ["checkbox3"] },
   },
   {
-    label: 'DatePicker',
-    key: 'DatePicker',
+    label: "DatePicker",
+    key: "DatePicker",
     required: true,
     component: <DatePicker />,
   },
   {
-    label: 'RangePicker',
-    key: 'RangePicker',
+    label: "RangePicker",
+    key: "RangePicker",
     required: true,
     component: <RangePicker />,
   },
   {
-    label: 'Switch',
-    key: 'Switch',
+    label: "Switch",
+    key: "Switch",
     component: <Switch />,
-    options: { valuePropName: 'checked', initialValue: false },
+    options: { valuePropName: "checked", initialValue: false },
   },
 ];

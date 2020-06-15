@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { isObject, isString } from "lodash";
 import qs from "qs";
 
@@ -17,7 +18,7 @@ export const createRequest = (fn, obj) => {
   };
 };
 
-export const enhanceHeader = config => {
+export const enhanceHeader = (config) => {
   return {
     ...config,
     headers: Object.assign(config.header || {}, {
@@ -26,7 +27,7 @@ export const enhanceHeader = config => {
   };
 };
 
-export const enhanceContentType = config => {
+export const enhanceContentType = (config) => {
   const { body, method, query } = config;
   let { headers } = config;
   if (!isObject(headers)) {
@@ -52,15 +53,15 @@ export const enhanceContentType = config => {
   return config;
 };
 
-export const enhanceUrl = config => {
+export const enhanceUrl = (config) => {
   if (config.query) {
     config.url = `${config.url}?${qs.stringify(config.query)}`;
   }
   return config;
 };
 
-export const checkStatus = res => {
-  const isStatusOk = response => {
+export const checkStatus = (res) => {
+  const isStatusOk = (response) => {
     const { status } = response;
     return status >= 200 && status < 400;
   };
@@ -70,7 +71,7 @@ export const checkStatus = res => {
   throw new Error("you can custom you error here");
 };
 
-export const formatResponse = res => {
+export const formatResponse = (res) => {
   const contentType = res.headers.get("content-type");
   let responseType = "";
   if (contentType) {

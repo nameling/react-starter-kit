@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { DatePicker } from 'antd';
-import style from './index.module.less';
+import React, { Component } from "react";
+import { DatePicker } from "antd";
+import style from "./index.module.less";
 
 class Home extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ class Home extends Component {
   render() {
     const { value } = this.state;
     return (
-      <div className={style['page-home']}>
+      <div className={style["page-home"]}>
         <h1>hello world</h1>
         <DatePicker value={value} onChange={this.handleChange} />
       </div>

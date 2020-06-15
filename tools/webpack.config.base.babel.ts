@@ -1,16 +1,16 @@
-import path from 'path';
-import os from 'os';
+import path from "path";
+import os from "os";
 
-import webpack from 'webpack';
-import HappyPack from 'happypack';
-import ProgressBarPlugin from 'progress-bar-webpack-plugin';
-import LodashModuleReplacementPlugin from 'lodash-webpack-plugin';
-import mdHighlightPlugin from '@mapbox/rehype-prism';
+import webpack from "webpack";
+import HappyPack from "happypack";
+import ProgressBarPlugin from "progress-bar-webpack-plugin";
+import LodashModuleReplacementPlugin from "lodash-webpack-plugin";
+import mdHighlightPlugin from "@mapbox/rehype-prism";
 
-import paths, { PUBLIC_PATH } from './paths';
-import getTheme from './theme';
-import getStyleLoaders from './getStyleLoaders';
-import switchConfig from './swtich.config';
+import paths, { PUBLIC_PATH } from "./paths";
+import getTheme from "./theme";
+import getStyleLoaders from "./getStyleLoaders";
+import switchConfig from "./swtich.config";
 
 // 构造出共享进程池，进程池中包含cpu+1个子进程
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length + 1 });
@@ -19,8 +19,8 @@ const { OPEN_SOURCE_MAP } = switchConfig;
 // 覆盖 antd 主题
 const theme = getTheme(paths.appTheme);
 
-const isProd = process.env.NODE_ENV === 'production';
-const isVerbose = process.argv.includes('--verbose');
+const isProd = process.env.NODE_ENV === "production";
+const isVerbose = process.argv.includes("--verbose");
 
 const REGEXP_SCRIPT = /\.(ts|tsx|js|jsx|mjs)$/;
 const REGEXP_IMAGE = /\.(bmp|gif|jpg|jpeg|png|svg)$/;
@@ -32,7 +32,7 @@ const REGEXP_LESS = /\.less$/;
 export default {
   context: paths.appRoot,
 
-  mode: isProd ? 'production' : 'development',
+  mode: isProd ? "production" : "development",
 
   // 入口
   entry: [paths.appEntry],
@@ -44,101 +44,109 @@ export default {
     publicPath: PUBLIC_PATH,
     pathinfo: isVerbose,
     // 入口文件名
-    filename: isProd ? 'js/[name].[hash:8].js' : 'js/[name].js',
+    filename: isProd ? "js/[name].[hash:8].js" : "js/[name].js",
     // 非入口代码分块文件名规则
     chunkFilename: isProd
-      ? 'js/[name].[hash:8].chunk.js'
-      : 'js/[name].chunk.js',
+      ? "js/[name].[hash:8].chunk.js"
+      : "js/[name].chunk.js",
     // 格式化 windows 上的文件路径
-    devtoolModuleFilenameTemplate: info =>
-      path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
+    devtoolModuleFilenameTemplate: (info) =>
+      path.resolve(info.absoluteResourcePath).replace(/\\/g, "/"),
   },
 
-  devtool: isProd ? 'source-map' : 'cheap-module-eval-source-map',
+  devtool: isProd ? "source-map" : "cheap-module-eval-source-map",
 
   resolve: {
     alias: {
-      '@': paths.appSrc,
+      "@": paths.appSrc,
     },
-    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
+    extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
     modules: [paths.appNodeModules, paths.appSrc],
   },
 
   module: {
     rules: [
-        {
-            test: /\.(js|jsx|ts|tsx)$/,
-            loader: 'babel-loader?cacheDirectory',
-            include: [path.resolve(__dirname, '../src/')],
-        },
-        {
-            test: /\.(css|less)$/,
-            include: [path.resolve(__dirname, '../src/')],
-            exclude: /node_modules/,
-            use: [
-              {
-                loader: 'style-loader',
-              },
-              {
-                loader: 'css-loader',
-                options: {
-                  sourceMap: true,
-                  modules: {
-                    localIdentName: '[local].[hash:8]',
-                  },
-                },
-              },
-              // {
-              //   loader: 'postcss-loader',
-              // },
-              {
-                loader: 'less-loader',
-                options: {
-                  javascriptEnabled: true,
-                  modifyVars: theme,
-                },
-              },
-            ],
-        },
-        {
-          test: /\.(css|less)$/,
-          include: /node_modules/,
-          use: [
-            {
-              loader: 'style-loader',
-            },
-            {
-              loader: 'css-loader',
-              options: {},
-            },
-            // {
-            //   loader: 'postcss-loader',
-            //   options: {
-            //     plugins: () => [autoprefixer()],
-            //   },
-            // },
-            {
-              loader: 'less-loader',
-              options: {
-                javascriptEnabled: true,
-                modifyVars: theme,
+      {
+        test: REGEXP_SCRIPT,
+        enforce: "pre",
+        loader: "happypack/loader?id=eslint",
+        include: paths.appSrc,
+        exclude: paths.appNodeModules,
+      },
+      {
+        test: /\.(js|jsx|ts|tsx)$/,
+        loader: "happypack/loader?id=babel",
+        include: [path.resolve(__dirname, "../src/")],
+        exclude: paths.appNodeModules,
+      },
+      {
+        test: /\.(css|less)$/,
+        include: [path.resolve(__dirname, "../src/")],
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: "style-loader",
+          },
+          {
+            loader: "css-loader",
+            options: {
+              sourceMap: true,
+              modules: {
+                localIdentName: "[local].[hash:8]",
               },
             },
-          ],
-        },
-        {
-          test: /.mdx?$/,
-          use: [
-            'babel-loader',
-            {
-              loader: '@mdx-js/loader',
-              options: {
-                rehypePlugins: [mdHighlightPlugin],
-              },
+          },
+          // {
+          //   loader: 'postcss-loader',
+          // },
+          {
+            loader: "less-loader",
+            options: {
+              javascriptEnabled: true,
+              modifyVars: theme,
             },
-          ],
-        },
-    ]
+          },
+        ],
+      },
+      {
+        test: /\.(css|less)$/,
+        include: /node_modules/,
+        use: [
+          {
+            loader: "style-loader",
+          },
+          {
+            loader: "css-loader",
+            options: {},
+          },
+          // {
+          //   loader: 'postcss-loader',
+          //   options: {
+          //     plugins: () => [autoprefixer()],
+          //   },
+          // },
+          {
+            loader: "less-loader",
+            options: {
+              javascriptEnabled: true,
+              modifyVars: theme,
+            },
+          },
+        ],
+      },
+      {
+        test: /.mdx?$/,
+        use: [
+          "babel-loader",
+          {
+            loader: "@mdx-js/loader",
+            options: {
+              rehypePlugins: [mdHighlightPlugin],
+            },
+          },
+        ],
+      },
+    ],
   },
 
   plugins: [
@@ -154,12 +162,12 @@ export default {
     }),
 
     new HappyPack({
-      id: 'eslint',
+      id: "eslint",
       // 使用共享进程池中的子进程去处理任务
       threadPool: happyThreadPool,
       loaders: [
         {
-          loader: 'eslint-loader',
+          loader: "eslint-loader",
           options: {
             cache: true, // 缓存lint结果，可以减少lint时间
           },
@@ -168,12 +176,12 @@ export default {
     }),
 
     new HappyPack({
-      id: 'babel',
+      id: "babel",
       // 使用共享进程池中的子进程去处理任务
       threadPool: happyThreadPool,
       loaders: [
         {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
             cacheDirectory: !isProd, // 缓存
           },
@@ -183,11 +191,11 @@ export default {
   ],
 
   node: {
-    dgram: 'empty',
-    fs: 'empty',
-    net: 'empty',
-    tls: 'empty',
-    child_process: 'empty',
+    dgram: "empty",
+    fs: "empty",
+    net: "empty",
+    tls: "empty",
+    child_process: "empty",
   },
 
   // 统计信息

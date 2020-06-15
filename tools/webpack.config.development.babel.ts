@@ -1,23 +1,23 @@
-import webpack from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import webpackConfigBase from './webpack.config.base.babel';
-import paths, { PUBLIC_PATH } from './paths';
-import proxyConfigAll from './proxy.config';
-import getValueByEnv from './getValueByEnv';
+import webpack from "webpack";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import webpackConfigBase from "./webpack.config.base.babel";
+import paths, { PUBLIC_PATH } from "./paths";
+import proxyConfigAll from "./proxy.config";
+import getValueByEnv from "./getValueByEnv";
 
-const HOST = process.env.HOST || '0.0.0.0'; // 本机IP
+const HOST = process.env.HOST || "0.0.0.0"; // 本机IP
 const PORT = process.env.PORT || 8080; // 端口号
 
-const proxyCurrent = getValueByEnv(proxyConfigAll, { defaultEnv: 'dev' });
+const proxyCurrent = getValueByEnv(proxyConfigAll, { defaultEnv: "dev" });
 
 const webpackConfigDev = {
   ...webpackConfigBase,
   devServer: {
     // 允许访问的机器列表
-    allowedHosts: [HOST, 'localhost', '127.0.0.1'],
+    allowedHosts: [HOST, "localhost", "127.0.0.1"],
 
     // 客户端日志信息等级
-    clientLogLevel: 'none',
+    clientLogLevel: "none",
 
     // gzip 压缩
     compress: true,

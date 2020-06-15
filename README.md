@@ -1,6 +1,9 @@
 # react-starter-kit
-基于react生态的脚手架
+
+基于 react 生态的脚手架
+
 # 功能
+
 - editorconfig 文件规范
 - prettier 代码规范
 - babel@7

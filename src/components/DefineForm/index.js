@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Form, Input } from 'antd';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Form, Input } from "antd";
 
 const FormItem = Form.Item;
 
@@ -61,7 +61,7 @@ class DefineForm extends Component {
 
     return (
       <Form>
-        {items.map(item => (
+        {items.map((item) => (
           <FormItemRender
             key={item.key}
             {...{ item, layout, getFieldDecorator }}

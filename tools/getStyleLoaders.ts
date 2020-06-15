@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
 /**
  * 获取 cssLoaders
@@ -17,12 +17,12 @@ export default function getStyleLoaders({
     isProd
       ? MiniCssExtractPlugin.loader
       : {
-        loader: 'style-loader',
-        options: { sourceMap },
-      },
+          loader: "style-loader",
+          options: { sourceMap },
+        },
     /* eslint-enable prettier/prettier */
     {
-      loader: 'css-loader',
+      loader: "css-loader",
       options: {
         sourceMap,
 
@@ -30,8 +30,8 @@ export default function getStyleLoaders({
 
         // 生产环境使用短类名，开发环境使用详细类名
         localIdentName: isProd
-          ? '[local]--[hash:base64:8]'
-          : '[path][name]__[local]--[hash:base64:5]',
+          ? "[local]--[hash:base64:8]"
+          : "[path][name]__[local]--[hash:base64:5]",
 
         // 前置loader数量1，postcss-loader
         importLoaders: useLess ? 2 : 1,
@@ -39,11 +39,11 @@ export default function getStyleLoaders({
     },
 
     isProd && {
-      loader: 'postcss-loader',
+      loader: "postcss-loader",
       options: { sourceMap },
     },
     useLess && {
-      loader: 'less-loader',
+      loader: "less-loader",
       options: {
         javascriptEnabled: true,
         modifyVars,

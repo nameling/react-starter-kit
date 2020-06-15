@@ -1,4 +1,4 @@
-import { lazy, LazyExoticComponent, ComponentType } from 'react';
+import { lazy, LazyExoticComponent, ComponentType } from "react";
 
 interface RouteItem<T extends ComponentType<any> = any> {
   path: string;
@@ -6,62 +6,62 @@ interface RouteItem<T extends ComponentType<any> = any> {
   component: LazyExoticComponent<T>;
 }
 
-const Home = lazy(() => import(/* webpackChunkName: "Home" */ '@/pages/Home'));
+const Home = lazy(() => import(/* webpackChunkName: "Home" */ "@/pages/Home"));
 
 const About = lazy(() =>
-  import(/* webpackChunkName: "About" */ '@/pages/About')
+  import(/* webpackChunkName: "About" */ "@/pages/About")
 );
 
-const Edit = lazy(() => import(/* webpackChunkName: "Edit" */ '@/pages/Edit'));
+const Edit = lazy(() => import(/* webpackChunkName: "Edit" */ "@/pages/Edit"));
 
 const GoodsList = lazy(() =>
-  import(/* webpackChunkName: "List" */ '@/pages/List/goodsList')
+  import(/* webpackChunkName: "List" */ "@/pages/List/goodsList")
 );
 
-const Demo = lazy(() => import(/* webpackChunkName: "Demo" */ '@/pages/Demo'));
+const Demo = lazy(() => import(/* webpackChunkName: "Demo" */ "@/pages/Demo"));
 
 const Hooks = lazy(() =>
-  import(/* webpackChunkName: "Hooks" */ '@/pages/Hooks')
+  import(/* webpackChunkName: "Hooks" */ "@/pages/Hooks")
 );
 
 const Counter = lazy(() =>
-  import(/* webpackChunkName: "Counter" */ '@/pages/Hooks/count')
+  import(/* webpackChunkName: "Counter" */ "@/pages/Hooks/count")
 );
 
 const routes: RouteItem[] = [
   {
-    path: '/',
-    name: 'Home',
+    path: "/",
+    name: "Home",
     component: Home,
   },
   {
-    path: '/about',
-    name: 'About',
+    path: "/about",
+    name: "About",
     component: About,
   },
   {
-    path: '/edit',
-    name: 'Edit',
+    path: "/edit",
+    name: "Edit",
     component: Edit,
   },
   {
-    path: '/list',
-    name: 'List',
+    path: "/list",
+    name: "List",
     component: GoodsList,
   },
   {
-    path: '/demo',
-    name: 'Demo',
+    path: "/demo",
+    name: "Demo",
     component: Demo,
   },
   {
-    path: '/hooks',
-    name: 'Hooks',
+    path: "/hooks",
+    name: "Hooks",
     component: Hooks,
   },
   {
-    path: '/counter',
-    name: 'Counter',
+    path: "/counter",
+    name: "Counter",
     component: Counter,
   },
 ];

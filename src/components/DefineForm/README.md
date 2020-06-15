@@ -3,27 +3,27 @@
 ## Usage
 
 ```jsx
-import React, { Component } from 'react';
-import moment from 'moment';
-import { Button } from 'antd';
-import DefineForm, { defaultLabelColSpan } from '@/components/DefineForm';
+import React, { Component } from "react";
+import moment from "moment";
+import { Button } from "antd";
+import DefineForm, { defaultLabelColSpan } from "@/components/DefineForm";
 
 // formItems即为表单的配置项
-import formItems from './customFormItems';
+import formItems from "./customFormItems";
 
 // 模拟发请求（在做修改操作时，表单需要先填充已有数据，这里写了个假的获取详情接口）
 const requestDetail = () =>
-  new Promise(resolve => {
+  new Promise((resolve) => {
     setTimeout(() => {
       resolve({
-        Input: 'Input',
-        password: 'password',
-        Select: 'option2',
-        RadioGroup: 'radio2',
-        RadioButtonGroup: 'radio2',
-        CheckboxGroup: ['checkbox2'],
-        DatePicker: '2018-05-15T13:36:27.132Z',
-        RangePicker: ['2018-04-15T13:36:27.132Z', '2018-05-15T13:36:27.132Z'],
+        Input: "Input",
+        password: "password",
+        Select: "option2",
+        RadioGroup: "radio2",
+        RadioButtonGroup: "radio2",
+        CheckboxGroup: ["checkbox2"],
+        DatePicker: "2018-05-15T13:36:27.132Z",
+        RangePicker: ["2018-04-15T13:36:27.132Z", "2018-05-15T13:36:27.132Z"],
         Switch: true,
       });
     }, 1500);
@@ -36,10 +36,10 @@ class Edit extends Component {
   }
 
   handleGetDetail = () => {
-    requestDetail().then(res => {
+    requestDetail().then((res) => {
       // 如果字段的值是日期，要先转成moment格式
       res.DatePicker = moment(res.DatePicker);
-      res.RangePicker = res.RangePicker.map(d => moment(d));
+      res.RangePicker = res.RangePicker.map((d) => moment(d));
       this.formRef.setFieldsValue(res);
     });
   };
@@ -50,7 +50,7 @@ class Edit extends Component {
       if (err) {
         return;
       }
-      console.info('校验通过');
+      console.info("校验通过");
     });
   };
 
@@ -66,7 +66,7 @@ class Edit extends Component {
         </Button>
 
         <DefineForm
-          ref={node => {
+          ref={(node) => {
             this.formRef = node;
           }}
           items={formItems}

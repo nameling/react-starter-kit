@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withRouter } from 'react-router';
-import s from './goodsItem.module.less';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { withRouter } from "react-router";
+import s from "./goodsItem.module.less";
 
 @withRouter
 class GoodsItem extends Component {

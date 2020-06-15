@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { inject, observer } from 'mobx-react';
-import { observable } from 'mobx';
-import { Button, Table } from 'antd';
-import s from './goodsList.module.less';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { inject, observer } from "mobx-react";
+import { observable } from "mobx";
+import { Button, Table } from "antd";
+import s from "./goodsList.module.less";
 // import GoodsItem from './goodsItem';
-import { getColumns } from './const.ts';
+import { getColumns } from "./const";
 
-@inject('store')
+@inject("store")
 @observer
 class GoodsList extends Component {
   static propTypes = {
@@ -36,7 +36,7 @@ class GoodsList extends Component {
     } = this.props;
 
     const columns = getColumns({
-      renderImg: text => <img src={text} alt="" />,
+      renderImg: (text) => <img src={text} alt="" />,
     });
     return (
       <div className={s.goodsListContainer}>
