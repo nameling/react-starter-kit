@@ -1,9 +1,10 @@
+/* eslint-disable no-restricted-globals */
 import React, { Suspense } from "react";
 import ReactDom from "react-dom";
 import { LocaleProvider } from "antd";
 import { Provider } from "mobx-react";
 import zhCN from "antd/lib/locale-provider/zh_CN";
-import App from "./app";
+import App from "./App";
 import store from "./store";
 
 ReactDom.render(

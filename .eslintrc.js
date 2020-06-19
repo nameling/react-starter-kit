@@ -109,6 +109,7 @@ module.exports = {
       ],
 
       rules: {
+        "react/jsx-props-no-spreading": OFF,
         "default-case": OFF,
         "no-dupe-class-members": OFF,
 

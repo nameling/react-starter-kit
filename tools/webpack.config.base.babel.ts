@@ -80,19 +80,18 @@ export default {
         exclude: paths.appNodeModules,
       },
       {
-        test: /\.(css|less)$/,
-        include: [path.resolve(__dirname, "../src/")],
+        test: /\.module\.(css|less)$/,
+        include: [path.resolve(__dirname, '../src/')],
         exclude: /node_modules/,
         use: [
           {
-            loader: "style-loader",
+            loader: 'style-loader',
           },
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
-              sourceMap: true,
               modules: {
-                localIdentName: "[local].[hash:8]",
+                localIdentName: '[local]__[hash:8]',
               },
             },
           },
@@ -100,7 +99,35 @@ export default {
           //   loader: 'postcss-loader',
           // },
           {
-            loader: "less-loader",
+            loader: 'less-loader',
+            options: {
+              javascriptEnabled: true,
+              modifyVars: theme,
+            },
+          },
+        ],
+      },
+      {
+        test(filepath) {
+          return (
+            /\.(less|css)$/.test(filepath) &&
+            !/\.module\.(less|css)$/.test(filepath)
+          );
+        },
+        include: [path.resolve(__dirname, '../src/')],
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+          },
+          // {
+          //   loader: 'postcss-loader',
+          // },
+          {
+            loader: 'less-loader',
             options: {
               javascriptEnabled: true,
               modifyVars: theme,
@@ -111,22 +138,19 @@ export default {
       {
         test: /\.(css|less)$/,
         include: /node_modules/,
+        exclude: [path.resolve(__dirname, '../src/')],
         use: [
           {
-            loader: "style-loader",
+            loader: 'style-loader',
           },
           {
-            loader: "css-loader",
-            options: {},
+            loader: 'css-loader',
           },
           // {
           //   loader: 'postcss-loader',
-          //   options: {
-          //     plugins: () => [autoprefixer()],
-          //   },
           // },
           {
-            loader: "less-loader",
+            loader: 'less-loader',
             options: {
               javascriptEnabled: true,
               modifyVars: theme,

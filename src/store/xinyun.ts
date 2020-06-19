@@ -1,6 +1,6 @@
 import { observable, action, runInAction } from "mobx";
 // import { message as AntMessage } from 'antd';
-import { keyOrMenu } from "@/services/xinyun";
+import keyOrMenu from "@/services/xinyun";
 
 class XinyunStore {
   @observable.ref

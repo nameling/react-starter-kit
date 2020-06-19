@@ -2,6 +2,17 @@ import React, { Component } from "react";
 import { DatePicker } from "antd";
 import style from "./index.module.less";
 
+interface Iprops {
+  logo?: string;
+  classname?: string;
+  alt?: string;
+}
+
+const Logo = (props: Iprops) => {
+  const { logo, classname, alt } = props;
+  return <img className={classname} src={logo} alt={alt} />;
+};
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -11,8 +22,8 @@ class Home extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(date, dateString) {
-    console.info(date, dateString, Object.assign({}, { a: 1 }, { b: false }));
+  handleChange(date) {
+    // console.info(date, dateString, { a: 1 }, { b: false });
     this.setState({ value: date });
   }
 
