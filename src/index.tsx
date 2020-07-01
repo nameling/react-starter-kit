@@ -1,11 +1,12 @@
 /* eslint-disable no-restricted-globals */
-import React, { Suspense } from "react";
-import ReactDom from "react-dom";
-import { LocaleProvider } from "antd";
-import { Provider } from "mobx-react";
-import zhCN from "antd/lib/locale-provider/zh_CN";
-import App from "./App";
-import store from "./store";
+/* eslint-disable react/jsx-props-no-spreading */
+import React, { Suspense } from 'react';
+import ReactDom from 'react-dom';
+import { LocaleProvider } from 'antd';
+import { Provider } from 'mobx-react';
+import zhCN from 'antd/lib/locale-provider/zh_CN';
+import App from './App';
+import store from './store';
 
 ReactDom.render(
   <LocaleProvider locale={zhCN}>
@@ -15,10 +16,10 @@ ReactDom.render(
       </Provider>
     </Suspense>
   </LocaleProvider>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 
-if (process.env.NODE_ENV === "development") {
+if (process.env.NODE_ENV === 'development') {
   if (module.hot) {
     module.hot.accept();
   }

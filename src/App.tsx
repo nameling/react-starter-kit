@@ -1,11 +1,11 @@
-import React, { Suspense } from "react";
-import { Router, Switch, Route } from "react-router-dom";
-import { createBrowserHistory } from "history";
+import React, { Suspense } from 'react';
+import { Router, Switch, Route } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 
-import routes from "@/router/index";
-import "@/App.less";
+import routes from '@/router';
+import '@/App.less';
 
-import Loading from "@/components/Loading/index";
+import Loading from '@/components/Loading';
 
 const historyInstance = createBrowserHistory();
 

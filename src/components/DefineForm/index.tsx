@@ -29,9 +29,9 @@ export interface DefineFormItem {
 }
 
 interface FormItemRenderProps {
-  item: DefineFormItem,
-  layout?: DefineFormItemLayout,
-  getFieldDecorator: WrappedFormUtils["getFieldDecorator"]
+  item: DefineFormItem;
+  layout?: DefineFormItemLayout;
+  getFieldDecorator: WrappedFormUtils['getFieldDecorator'];
 }
 // 渲染单个表单项
 const FormItemRender = ({

@@ -1,68 +1,68 @@
 // 外网 IP ，欺瞒服务端 ip 验证
-const XForwardedFor = "123.234.123.234";
+const XForwardedFor = '123.234.123.234';
 
 const headers = {
-  "X-Forwarded-For": XForwardedFor,
+  'X-Forwarded-For': XForwardedFor,
 };
 
 export default {
   mock: {
-    "/api3": {
+    '/api3': {
       changeOrigin: true,
       headers,
-      target: "http://api3.mock.server.com",
+      target: 'http://api3.mock.server.com',
     },
-    "/api": {
+    '/api': {
       changeOrigin: true,
       headers,
-      target: "http://api.mock.server.com",
+      target: 'http://api.mock.server.com',
       pathRewrite: {
-        "^/api": "/api2/write/",
+        '^/api': '/api2/write/',
       },
     },
   },
   dev: {
-    "/api3": {
+    '/api3': {
       changeOrigin: true,
       headers,
-      target: "http://api3.dev.server.com",
+      target: 'http://api3.dev.server.com',
     },
-    "/api": {
+    '/api': {
       changeOrigin: true,
       headers,
-      target: "http://api.dev.server.com",
+      target: 'http://api.dev.server.com',
       pathRewrite: {
-        "^/api": "/api2/write/",
+        '^/api': '/api2/write/',
       },
     },
   },
   qa: {
-    "/api3": {
+    '/api3': {
       changeOrigin: true,
       headers,
-      target: "http://api3.qa.server.com",
+      target: 'http://api3.qa.server.com',
     },
-    "/api": {
+    '/api': {
       changeOrigin: true,
       headers,
-      target: "http://api.qa.server.com",
+      target: 'http://api.qa.server.com',
       pathRewrite: {
-        "^/api": "/api2/write/",
+        '^/api': '/api2/write/',
       },
     },
   },
   online: {
-    "/api3": {
+    '/api3': {
       changeOrigin: true,
       headers,
-      target: "http://api3.server.com",
+      target: 'http://api3.server.com',
     },
-    "/api": {
+    '/api': {
       changeOrigin: true,
       headers,
-      target: "http://api.server.com",
+      target: 'http://api.server.com',
       pathRewrite: {
-        "^/api": "/api2/write/",
+        '^/api': '/api2/write/',
       },
     },
   },

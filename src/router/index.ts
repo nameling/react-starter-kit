@@ -1,4 +1,4 @@
-import { lazy, LazyExoticComponent, ComponentType } from "react";
+import { lazy, LazyExoticComponent, ComponentType } from 'react';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 interface RouteItem<T extends ComponentType<any> = any> {
@@ -7,7 +7,7 @@ interface RouteItem<T extends ComponentType<any> = any> {
   component: LazyExoticComponent<T>;
 }
 
-const Home = lazy(() => import(/* webpackChunkName: "Home" */ "@/pages/Home"));
+const Home = lazy(() => import(/* webpackChunkName: "Home" */ '@/pages/Home'));
 
 // const About = lazy(() =>
 //   import(/* webpackChunkName: "About" */ "@/pages/About")
@@ -31,8 +31,8 @@ const Home = lazy(() => import(/* webpackChunkName: "Home" */ "@/pages/Home"));
 
 const routes: RouteItem[] = [
   {
-    path: "/",
-    name: "Home",
+    path: '/',
+    name: 'Home',
     component: Home,
   },
   // {

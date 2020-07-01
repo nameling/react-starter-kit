@@ -1,6 +1,6 @@
-import { observable, action, runInAction } from "mobx";
+import { observable, action, runInAction } from 'mobx';
 // import { message as AntMessage } from 'antd';
-import keyOrMenu from "@/services/xinyun";
+import keyOrMenu from '@/services/xinyun';
 
 class XinyunStore {
   @observable.ref
@@ -15,7 +15,7 @@ class XinyunStore {
   info = {};
 
   @observable
-  logo = "";
+  logo = '';
 
   @observable
   message = [];
@@ -24,7 +24,7 @@ class XinyunStore {
   aptitudeStatus = 0;
 
   @observable
-  merchantName = "";
+  merchantName = '';
 
   @observable
   count = -1;
