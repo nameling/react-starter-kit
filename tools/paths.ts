@@ -1,8 +1,7 @@
 import fs from 'fs';
-import path, { relative } from 'path';
+import path from 'path';
 
-
-export function htmlDiv(p : string) : string {
+export function htmlDiv(p: number): number {
   return p;
 }
 

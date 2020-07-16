@@ -51,7 +51,7 @@ const FormItemRender = ({
 };
 
 export interface DefineFormProps {
-  form: any;
+  form: WrappedFormUtils;
   wrappedComponentRef?: unknown;
   items: DefineFormItem[];
   layout?: DefineFormItemLayout;

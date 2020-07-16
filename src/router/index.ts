@@ -13,7 +13,7 @@ const Home = lazy(() => import(/* webpackChunkName: "Home" */ '@/pages/Home'));
 //   import(/* webpackChunkName: "About" */ "@/pages/About")
 // );
 
-// const Edit = lazy(() => import(/* webpackChunkName: "Edit" */ "@/pages/Edit"));
+const Edit = lazy(() => import(/* webpackChunkName: "Edit" */ '@/pages/Edit'));
 
 // const GoodsList = lazy(() =>
 //   import(/* webpackChunkName: "List" */ "@/pages/List/goodsList")
@@ -40,11 +40,11 @@ const routes: RouteItem[] = [
   //   name: "About",
   //   component: About,
   // },
-  // {
-  //   path: "/edit",
-  //   name: "Edit",
-  //   component: Edit,
-  // },
+  {
+    path: '/edit',
+    name: 'Edit',
+    component: Edit,
+  },
   // {
   //   path: "/list",
   //   name: "List",
